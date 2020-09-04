@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Order = require('../models/Order');
 
 const getUsers = async (req, res, next) => {
   try {
@@ -10,7 +11,6 @@ const getUsers = async (req, res, next) => {
 }
 
 const getUser = async (req, res, next) => {
-  // 5f4d75a8bf290843cc1e7f96
   try {
     const { id } = req.params;
     const user = await User.find({ _id: id });
@@ -54,10 +54,25 @@ const updateUser = async (req, res, next) => {
   }
 };
 
+const getUserOrders = async (req, res, next) => {
+  // ?price[lte]=2000
+  try {
+    const { id } = req.params;
+    const queryStr = JSON.stringify(req.query).replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`)
+
+    const orders = await Order.find({ userId: id, ...JSON.parse(queryStr) })
+    res.json({ success: true, msg: `orders of user with user id ${id} retrieved`, data: orders })
+  } catch(err) {
+    next(err)
+  }
+};
+
+
 module.exports = {
   getUsers,
   getUser,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getUserOrders
 }
