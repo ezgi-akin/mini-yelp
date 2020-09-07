@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
   userId: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
     required: [true, 'Please add a userId']
   },
   price: {

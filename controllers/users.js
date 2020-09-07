@@ -1,5 +1,8 @@
 const User = require('../models/User');
 const Order = require('../models/Order');
+const mongoose = require('mongoose');
+
+const { ObjectId } = mongoose.Types;
 
 const getUsers = async (req, res, next) => {
   try {
@@ -13,7 +16,7 @@ const getUsers = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await User.find({ _id: id });
+    const user = await User.findById(id);
     res.json({ success: true, msg: 'show selected user', data: user })
   } catch(err) {
     next(err)
@@ -60,7 +63,7 @@ const getUserOrders = async (req, res, next) => {
     const { id } = req.params;
     const queryStr = JSON.stringify(req.query).replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`)
 
-    const orders = await Order.find({ userId: id, ...JSON.parse(queryStr) })
+    const orders = await Order.find({ userId: ObjectId(id), ...JSON.parse(queryStr) })
     res.json({ success: true, msg: `orders of user with user id ${id} retrieved`, data: orders })
   } catch(err) {
     next(err)
