@@ -7,15 +7,23 @@ const RestaurantSchema = new Schema({
     required: [true, 'Please add a name'],
     maxlength: [50, 'Only max 50 chars are allowed for the name']
   },
-  surname: {
+  img: {
     type: String,
-    required: [true, 'Please add a surname'],
-    maxlength: [50, 'Only max 50 chars are allowed for the surname']
   },
-  age: {
-    type: Number,
+  city: {
+    type: String,
     max: 120
-  }
+  },
+  address: {
+    type: String,
+    max: 120
+  },
+  description: {
+    type: String,
+    max: 120
+  },
+  tags: [{ type: Schema.Types.ObjectId, ref: 'Tags' }],
+  city: { type: Schema.Types.ObjectId, ref: 'Cities' }
 });
 
 module.exports = mongoose.model('restaurant', RestaurantSchema);
