@@ -11,9 +11,9 @@ api
   .route("/")
   .get(getRestaurants)
 
-/*api
+api
   .route('/:id')
-  .get(getRestaurant)*/
+  .get(getRestaurant)
 
   api
   .route('/:city_id/:tag_id')
