@@ -4,8 +4,7 @@ const express = require("express");
 
 const cors = require('cors');
 const connectDB = require('./dbinit');
-const users = require('./api/users');
-const orders = require('./api/orders');
+const restaurants = require('./api/restaurants');
 const errorHandler = require('./middleware/error');
 
 const app = express();
@@ -18,8 +17,7 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 app.use(express.json());
-app.use('/users', users);
-app.use('/orders', orders);
+app.use('/restaurant', restaurants);
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Started server on port ${PORT}`.rainbow.bold.inverse));

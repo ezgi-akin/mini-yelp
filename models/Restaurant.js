@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const RestaurantSchema = new Schema({
   name: {
     type: String,
     required: [true, 'Please add a name'],
@@ -18,4 +18,4 @@ const UserSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('restaurant', RestaurantSchema);
