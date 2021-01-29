@@ -7,6 +7,7 @@ const { ObjectId } = mongoose.Types;
 
 const getRestaurants = async (req, res, next) => {
   try {
+
     const restaurants = await Restaurant.find().populate('city').populate('tags');
     res.json({ success: true, msg: 'show all restaurants', data: restaurants })
   } catch(err) {
@@ -24,7 +25,22 @@ const getRestaurant = async (req, res, next) => {
   }
 };
 
+const getRestaurantsByCity = async (req, res, next) => {
+  try {
+    const { city_id, tag_id } = req.params;
+    //const restaurants = await Restaurant.find().populate('city').populate('tags');
+    //const restaurant = restaurants.filter(res => res.city._id === Number(city_id) )
+    const restaurants = await Restaurant.find({ city: city_id, tags: tag_id  }).populate('city').populate('tags');
+    console.log(restaurants)
+    res.json({ success: true, msg: 'show selected citys restaurants', data: restaurants })
+  } catch(err) {
+    next(err)
+  }
+}
+
+
 module.exports = {
   getRestaurants,
-  getRestaurant
+  getRestaurant,
+  getRestaurantsByCity
 }
