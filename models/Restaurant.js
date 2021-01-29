@@ -7,9 +7,7 @@ const RestaurantSchema = new Schema({
     required: [true, 'Please add a name'],
     maxlength: [50, 'Only max 50 chars are allowed for the name']
   },
-  img: {
-    type: String,
-  },
+  img: [{}],
   city: {
     type: String,
     max: 120
