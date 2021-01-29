@@ -6,6 +6,7 @@ const cors = require('cors');
 const connectDB = require('./dbinit');
 const restaurants = require('./api/restaurants');
 const tags = require('./api/tags');
+const cities = require('./api/cities');
 const errorHandler = require('./middleware/error');
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/restaurant', restaurants);
 app.use('/tag', tags);
+app.use('/city', cities);
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Started server on port ${PORT}`.rainbow.bold.inverse));
