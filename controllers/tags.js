@@ -1,7 +1,4 @@
 const Tags = require('../models/Tags');
-const mongoose = require('mongoose');
-
-const { ObjectId } = mongoose.Types;
 
 const getTags = async (req, res, next) => {
   try {

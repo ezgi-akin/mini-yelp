@@ -2,7 +2,7 @@ const express = require("express");
 const {
   getRestaurants,
   getRestaurant,
-  getRestaurantsByCity
+  getRestaurantsByCityAndTag
 } = require('../controllers/restaurants');
 
 const api = express.Router();
@@ -17,9 +17,7 @@ api
 
   api
   .route('/:city_id/:tag_id')
-  .get(getRestaurantsByCity)
-
-
+  .get(getRestaurantsByCityAndTag)
 
 
 module.exports = api;

@@ -14,6 +14,4 @@ api
   .route('/:id')
   .get(getTag)
 
-
-
 module.exports = api;

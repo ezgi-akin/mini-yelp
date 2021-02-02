@@ -1,7 +1,4 @@
 const Cities = require('../models/Cities');
-const mongoose = require('mongoose');
-
-const { ObjectId } = mongoose.Types;
 
 const getCities = async (req, res, next) => {
   try {

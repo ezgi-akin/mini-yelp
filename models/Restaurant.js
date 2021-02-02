@@ -16,8 +16,8 @@ const RestaurantSchema = new Schema({
     type: String,
     max: 120
   },
-  tags: [{ type: Schema.Types.ObjectId, ref: 'Tags' }],
-  city: { type: Schema.Types.ObjectId, ref: 'Cities' }
+  tags: [{ type: Schema.Types.ObjectId, ref: 'tags' }],
+  city: { type: Schema.Types.ObjectId, ref: 'cities' }
 });
 
-module.exports = mongoose.model('restaurant', RestaurantSchema);
+module.exports = mongoose.model('restaurants', RestaurantSchema);
